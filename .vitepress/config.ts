@@ -9,7 +9,6 @@ import { buildEndGenerateOpenGraphImages } from '@nolebase/vitepress-plugin-og-i
 import { UnlazyImages } from '@nolebase/markdown-it-unlazy-img'
 
 import { discordLink, githubRepoLink, siteDescription, siteName, targetDomain } from '../metadata'
-import { creatorNames, creatorUsernames } from './creators'
 import { sidebar } from './docsMetadata.json'
 
 export default defineConfig({
@@ -56,10 +55,6 @@ export default defineConfig({
         sizes: '16x16',
       },
     ],
-    ['meta', {
-      name: 'author',
-      content: creatorNames.join(', '),
-    }],
     [
       'meta',
       {
@@ -92,10 +87,6 @@ export default defineConfig({
     ['meta', {
       name: 'twitter:card',
       content: 'summary_large_image',
-    }],
-    ['meta', {
-      name: 'twitter:creator',
-      content: creatorUsernames.join(', '),
     }],
     [
       'meta',

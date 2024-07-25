@@ -33,7 +33,7 @@ import {
   NolebaseUnlazyImg,
 } from '@nolebase/vitepress-plugin-thumbnail-hash/client'
 
-import { creators } from '../creators'
+
 
 import AppContainer from './components/AppContainer.vue'
 import DocFooter from './components/DocFooter.vue'
@@ -101,9 +101,7 @@ const ExtendedTheme: Theme = {
       },
     })
 
-    app.provide(NolebaseGitChangelogInjectionKey, {
-      mapContributors: creators,
-    })
+
 
     app.use(NolebaseInlineLinkPreviewPlugin)
     app.use(NolebaseGitChangelogPlugin)
@@ -148,7 +146,7 @@ const ExtendedTheme: Theme = {
     // Get frontmatter and route
     const { frontmatter } = toRefs(useData());
     const route = useRoute();
-    
+
     // Obtain configuration from: https://giscus.app/
     giscusTalk({
       repo: 'Jackiexiao/nolebase-template',
