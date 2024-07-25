@@ -60,7 +60,7 @@ export default defineConfig({
       {
         name: 'keywords',
         content:
-          ['markdown', 'knowledge-base', '知识库', 'vitepress', 'obsidian', 'notebook', 'notes', ...creatorUsernames].join(', '),
+          ['markdown', 'knowledge-base', '知识库', 'vitepress', 'obsidian', 'notebook', 'notes'].join(', '),
       },
     ],
 
