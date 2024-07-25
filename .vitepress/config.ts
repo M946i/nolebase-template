@@ -5,7 +5,7 @@ import MarkdownItMathjax3 from 'markdown-it-mathjax3'
 
 import { BiDirectionalLinks } from '@nolebase/markdown-it-bi-directional-links'
 import { InlineLinkPreviewElementTransform } from '@nolebase/vitepress-plugin-inline-link-preview/markdown-it'
-import { buildEndGenerateOpenGraphImages } from '@nolebase/vitepress-plugin-og-image/vitepress'
+import { EndGenerateOpenGraphImages } from '@nolebase/vitepress-plugin-og-image/vitepress'
 import { UnlazyImages } from '@nolebase/markdown-it-unlazy-img'
 
 import { discordLink, githubRepoLink, siteDescription, siteName, targetDomain } from '../metadata'
@@ -224,8 +224,8 @@ export default defineConfig({
       })
     },
   },
-  async buildEnd(siteConfig) {
-    await buildEndGenerateOpenGraphImages({
+  async End(siteConfig) {
+    await EndGenerateOpenGraphImages({
       baseUrl: targetDomain,
       category: {
         byLevel: 2,

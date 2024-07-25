@@ -78,7 +78,7 @@ const ExtendedTheme: Theme = {
   },
   enhanceApp({ app }) {
     /**
-     * Have to manually import and register the essential components that needed during build globally.
+     * Have to manually import and register the essential components that needed during  globally.
      *
      * Learn more at: Warn `Hydration completed but contains mismatches.` and Custom components are not rendered · Issue #1918 · vuejs/vitepress
      * https://github.com/vuejs/vitepress/issues/1918

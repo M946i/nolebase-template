@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  :
     name: Ubuntu 构建和推送
     runs-on: ubuntu-latest
     environment:
@@ -54,7 +54,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: 构建
-        run: pnpm docs:build
+        run: pnpm docs:
 
       - name: 安装 Netlify CLI
         run: pnpm install -g netlify-cli

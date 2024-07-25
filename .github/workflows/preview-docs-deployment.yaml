@@ -44,8 +44,8 @@ jobs:
         with:
           workflow_conclusion: success
           run_id: ${{ github.event.workflow_run.id }}
-          name: docs-build
-          path: docs-build
+          name: docs-
+          path: docs-
           allow_forks: true
 
       - name: 安装 Node.js 20.x
@@ -77,7 +77,7 @@ jobs:
 
       - name: 推送到 Netlify
         run: |
-          NETLIFY_JSON_OUTPUT=$(netlify deploy --dir docs-build --json)
+          NETLIFY_JSON_OUTPUT=$(netlify deploy --dir docs- --json)
           echo $NETLIFY_JSON_OUTPUT
 
           echo "NETLIFY_JSON_OUTPUT=$(echo $NETLIFY_JSON_OUTPUT)" >> $GITHUB_ENV
