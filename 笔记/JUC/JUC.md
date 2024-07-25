@@ -4,7 +4,7 @@
 
 ##### JUC是java.util.concurrent包的缩写，包结构如下，说白了就是并发场景进行多线程编程的工具类。
 
-![image-20231110141514995](https://m946i.zeabur.app/upload/m946i/image-20231110141514995.png)
+![image-20231110141514995](./image-20231110141514995.png)
 
 ##### 我总结 JUC就是在并发场景下，怎么让程序尽量通过有限的硬件，高效的处理请求，并且保证程序“线程安全”而这涉及到的知识非常的庞大。
 
@@ -60,7 +60,7 @@
 
 ##### 底层：如单核CPU，同一时刻只能运行一个程序，如果存在多个程 序 ，需要按照先后顺序执行。我打开qq后，不能再同时打开微信，只能等qq执行完成（ 关 闭 ）后才能打开微信，线程的串行亦是如此，一次只能执行一个线程代码指令，其他线程需要排队等待。
 
-##### 综合来说： 
+##### 综合来说：
 
 ##### 并发 Concurrent：指应用能够交替执行不同的任务比如单CPU核心下执行多线程并非是同时间执行多个任务，如果你开两个线程执行，就是在你几乎不可能察觉到的速度不断去切换这两个任务，已达到"同时执行效果"，其实并不是的，只是计算机的速度太快，我们无法察觉到而已。
 
@@ -119,7 +119,7 @@ public void test1(){
 
 ##### Java线程创建调用关系
 
-![image-20231111120215869](https://m946i.zeabur.app/upload/m946i/image-20231111120215869.png)
+![image-20231111120215869](./image-20231111120215869.png)
 
 ### start与run
 
@@ -189,11 +189,11 @@ public static boolean interrupted()
 
 ### 线程合并
 
-![image-20231112173702866](https://m946i.zeabur.app/upload/m946i/image-20231112173702866.png)
+![image-20231112173702866](./image-20231112173702866.png)
 
 ### isAlive
 
-![image-20231112173817618](https://m946i.zeabur.app/upload/m946i/image-20231112173817618.png)
+![image-20231112173817618](./image-20231112173817618.png)
 
 ### 守护线程
 
@@ -213,9 +213,9 @@ public static boolean interrupted()
 
 ### 线程的5种状态
 
-![image-20231112181006133](https://m946i.zeabur.app/upload/m946i/image-20231112181006133.png)
+![image-20231112181006133](./image-20231112181006133.png)
 
-![image-20231112181054849](https://m946i.zeabur.app/upload/m946i/image-20231112181054849.png)
+![image-20231112181054849](./image-20231112181054849.png)
 
 ### 线程状态间转换
 
@@ -305,7 +305,7 @@ public class Main {
 
 ### 什么是线程池
 
-![image-20231112204843360](https://m946i.zeabur.app/upload/m946i/image-20231112204843360.png)
+![image-20231112204843360](./image-20231112204843360.png)
 
 ##### 我们使用线程的时候就去创建一个线程，这样实现起来非常简便，但是就会有一个问题：
 
@@ -351,7 +351,7 @@ public class Main {
 try{
 	for(int i=1;i<=10;i++){
 		threadPool.execute(task);
-	
+
 	}
 }catch(Exception e){
 	e.printStackTrace();
@@ -367,7 +367,7 @@ try{
     }catch(InterruptedException e){
         e.printStackTrace();
     }
-	
+
 	// 判断线程池是否真正的“终止”了，并且代表线程池也已经执行完毕
 	System.out.println(threadPool.isTerminated());
 }
@@ -407,9 +407,9 @@ System.out.println(integer);*/
 
 ### 线程池参数&原理
 
-![image-20231113013008226](https://m946i.zeabur.app/upload/m946i/image-20231113013008226.png)
+![image-20231113013008226](./image-20231113013008226.png)
 
-##### corePoolSize：核心线程池数量 
+##### corePoolSize：核心线程池数量
 
 ##### maximumPoolSize：最大线程数量
 
@@ -451,7 +451,7 @@ System.out.println(integer);*/
 
 ​	`ThreadPoolExecutor.CallerRunsPolicy`：由调用线程处理该任务
 
-![image-20231113015814144](https://m946i.zeabur.app/upload/m946i/image-20231113015814144.png)
+![image-20231113015814144](./image-20231113015814144.png)
 
 ### 自定义线程池
 
@@ -722,7 +722,7 @@ private Runnable getTask() {
 ```java
 private void processWorkerExit(Worker w, boolean completedAbruptly) {
     // 如果是突然退出，那么workerCount没有进行调整，需要减一
-    if (completedAbruptly) 
+    if (completedAbruptly)
         decrementWorkerCount();
 
     final ReentrantLock mainLock = this.mainLock;
@@ -782,7 +782,7 @@ private void processWorkerExit(Worker w, boolean completedAbruptly) {
 
 1、RUNNING
 
-(1) 状态说明：线程池处在RUNNING状态时，能够接收新任务，以及对已添加的任务进行处理。 
+(1) 状态说明：线程池处在RUNNING状态时，能够接收新任务，以及对已添加的任务进行处理。
 (2) 状态切换：线程池的初始化状态是RUNNING。换句话说，线程池被一旦被创建，就处于RUNNING状态，并且线程池中的任务数为0！
 
 ```java
@@ -791,23 +791,23 @@ private final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0));
 
 2、 SHUTDOWN
 
-(1) 状态说明：线程池处在SHUTDOWN状态时，不接收新任务，但能处理已添加的任务。 
+(1) 状态说明：线程池处在SHUTDOWN状态时，不接收新任务，但能处理已添加的任务。
 (2) 状态切换：调用线程池的shutdown()接口时，线程池由RUNNING -> SHUTDOWN。
 
 3、STOP
 
-(1) 状态说明：线程池处在STOP状态时，不接收新任务，不处理已添加的任务，并且会中断正在处理的任务。 
+(1) 状态说明：线程池处在STOP状态时，不接收新任务，不处理已添加的任务，并且会中断正在处理的任务。
 (2) 状态切换：调用线程池的shutdownNow()接口时，线程池由(RUNNING or SHUTDOWN ) -> STOP。
 
 4、TIDYING
 
-(1) 状态说明：当所有的任务已终止，ctl记录的”任务数量”为0，线程池会变为TIDYING状态。当线程池变为TIDYING状态时，会执行钩子函数terminated()。terminated()在ThreadPoolExecutor类中是空的，若用户想在线程池变为TIDYING时，进行相应的处理；可以通过重载terminated()函数来实现。 
-(2) 状态切换：当线程池在SHUTDOWN状态下，阻塞队列为空并且线程池中执行的任务也为空时，就会由 SHUTDOWN -> TIDYING。 
+(1) 状态说明：当所有的任务已终止，ctl记录的”任务数量”为0，线程池会变为TIDYING状态。当线程池变为TIDYING状态时，会执行钩子函数terminated()。terminated()在ThreadPoolExecutor类中是空的，若用户想在线程池变为TIDYING时，进行相应的处理；可以通过重载terminated()函数来实现。
+(2) 状态切换：当线程池在SHUTDOWN状态下，阻塞队列为空并且线程池中执行的任务也为空时，就会由 SHUTDOWN -> TIDYING。
 当线程池在STOP状态下，线程池中执行的任务为空时，就会由STOP -> TIDYING。
 
 5、 TERMINATED
 
-(1) 状态说明：线程池彻底终止，就变成TERMINATED状态。 
+(1) 状态说明：线程池彻底终止，就变成TERMINATED状态。
 (2) 状态切换：线程池处在TIDYING状态时，执行完terminated()之后，就会由 TIDYING -> TERMINATED。
 
 ### 线程安全
@@ -991,7 +991,7 @@ CAS、volatile、synchronized、lock等等，这些会在后边的文章中慢�
 
 每个线程的局部变量会存在栈中，会在每个线程内存中被创建多份，因此不存在共享。
 
-![image-20231117070947753](https://m946i.zeabur.app/upload/m946i/image-20231117070947753.png)
+![image-20231117070947753](./image-20231117070947753.png)
 
 ### ThreadLocal
 
@@ -999,7 +999,7 @@ CAS、volatile、synchronized、lock等等，这些会在后边的文章中慢�
 
 ThreadLocal也就是线程本地变量。如果你创建了一个ThreadLocal变量，那么访问这个变量的每个线程都会有这个变量的一个本地拷贝，多个线程操作这个变量的时候，实际是操作自己本地内存里面的变量，从而起到线程隔离的作用，避免了线程安全的问题。
 
-![image-20231117072429728](https://m946i.zeabur.app/upload/m946i/image-20231117072429728.png)
+![image-20231117072429728](./image-20231117072429728.png)
 
 ThreadLocal是整个线程的全局变量，不是整个程序的就全局变量。
 
@@ -1034,7 +1034,7 @@ public class C2_CustomeThreadPool {
 - ThreadLocal是Java中所提供的线程本地存储机制，可以利用该机制将数据缓存在某个线程内部，该线程可以在任意时刻，任意方法中获取缓存的数据
 - ThreadLocal底层是通过ThreadLocalMap来实现的，每个Thread对象（注意不是ThreadLocal对象）中都存在一个ThreadLocalMap，Map的key为ThreadLocal对象，Map的value为需要缓存的值
 
-![image-20231117094143899](https://m946i.zeabur.app/upload/m946i/image-20231117094143899.png)
+![image-20231117094143899](./image-20231117094143899.png)
 
 实现方式观察ThreadLocal的set方法：
 
@@ -1056,7 +1056,7 @@ ThreadLocal.ThreadLocalMap threadLocals = null;
 
 static class Entry extend WeakRefenrence<ThreadLocal<?>>{
     Object value;
-    
+
     Entry(ThreadLocal<?> k, Object v){
         super(k);
         value = v;
@@ -1070,7 +1070,7 @@ static class Entry extend WeakRefenrence<ThreadLocal<?>>{
 
 解决办法是在使用ThreadLocal对象之后，手动调用ThreadLocal的remove方法，手动清除Entry对象。
 
-![image-20231117101514472](https://m946i.zeabur.app/upload/m946i/image-20231117101514472.png)
+![image-20231117101514472](./image-20231117101514472.png)
 
 ```java
 public class BaiLiThreadLocalMemoryLeakDemo{
@@ -1096,7 +1096,7 @@ public class BaiLiThreadLocalMemoryLeakDemo{
 
 InheritableThreadLocal是ThreadLocal子类，继承关系如下
 
-![image-20231117111507970](https://m946i.zeabur.app/upload/m946i/image-20231117111507970.png)
+![image-20231117111507970](./image-20231117111507970.png)
 
 在拥有了ThreadLocal的情况下，为什么还要InheritableThreadLocal？它在那些场景中可以用。
 
@@ -1159,10 +1159,10 @@ public class C1_VisibilityTest{
 				//}
 			}
 		}).start();
-		
+
 		Thread.sleep(2000);
 		//线程2
-		
+
         always = false;
 	}
 }
@@ -1172,7 +1172,7 @@ public class C1_VisibilityTest{
 
 #### JMM内存模型
 
-![image-20231119194446515](https://m946i.zeabur.app/upload/m946i/image-20231119194446515.png)
+![image-20231119194446515](./image-20231119194446515.png)
 
 ```java
 public class VolatileVisibiltityTest{
@@ -1182,7 +1182,7 @@ public class VolatileVisibiltityTest{
         new Thread(() -> {
             System.out.println("waiting data...");
             while(!initFlag){
-                
+
             }
             System.out.println("=============success");
         }).start();
@@ -1208,7 +1208,7 @@ public class VolatileVisibiltityTest{
 - **lock（锁定）：**将主内存变量加锁，标识为线程独占状态
 - **unlock（解锁）：**将主内存变量解锁，解锁后其他线程可以锁定该变量
 
-![image-20231119205140574](https://m946i.zeabur.app/upload/m946i/image-20231119205140574.png)
+![image-20231119205140574](./image-20231119205140574.png)
 
 ### JMM缓存不一致问题
 
@@ -1246,7 +1246,7 @@ public class VolatileVisibiltityTest{
 
 - **指令重排序**：在不影响**单线程**程序执行结果的前提下，计算机为了最大限度的发挥机器性能，会对机器指令重排优化
 
-  
+
 
 <img src=".\image-20231119215510376.png" alt="image-20231119215510376" style="zoom:50%;" />
 
@@ -1294,7 +1294,7 @@ public class LazyInitDemo{
   | LoadStore  | Load1；LoadStore；Store2  |  在store2及其后的写操作执行前，保证load1的读操作已读取结束   |
   | StoreLoad  | Store1；StoreLoad；Load2  | 保证store1的写操作已刷新到主内存之后，load2及其后的操作才能执行 |
 
-  
+
 
 - #### Java规定volatile需要实现的内存屏障
 
@@ -1505,12 +1505,12 @@ count.addAndGet();如果是JDK8，推荐使用LongAdder对象，比AtomicLong性
 public static void ia(){
 	// 无参构造函数 从0开始
 	LongAdder longAdder = new LongAdder();
-	
+
 	longAdder.increment();
 	longAdder.increment();
-	
+
 	System.out.println(longAdder.longValue());//3
-	
+
 	LongAccumulator longAccumulator = new LongAccumulator((x,y) -> x+y,1);//lambda表达式
 	longAccumulator.accumulate(1);//1
 	longAccumulator.accumulate(3);//4
@@ -1525,7 +1525,7 @@ public static void ia(){
 
 ##### 悲观锁
 
-![image-20231121164025382](https://m946i.zeabur.app/upload/m946i/image-20231121164025382.png)
+![image-20231121164025382](./image-20231121164025382.png)
 
 认为自己在使用数据的时候一定有别的线程来修改数据，因此在获取数据的时候会先加锁，确保数据不会被别的线程修改。
 
@@ -1574,7 +1574,7 @@ atomicInteger.incrementAndGet();
 
 乐观锁一般有两种实现方式：
 
-![image-20231121173746965](https://m946i.zeabur.app/upload/m946i/image-20231121173746965.png)
+![image-20231121173746965](./image-20231121173746965.png)
 
 1. 采用版本号机制
 2. CAS(Compare-and-Swap,即比较并替换)算法实现
@@ -1599,7 +1599,7 @@ public class T3
 	}
 	//=======================
 	AtomicInteger atomicInteger = new AtomicInteger();
-	
+
 	public intgetAtomicinteger()
 	{
 		return atomicInteger.get();
@@ -1608,7 +1608,7 @@ public class T3
 	{
 		atomicInteger.getAndIncrement();
 	}
-	
+
 }
 ```
 
@@ -1639,7 +1639,7 @@ public class CASDemo
 	public static void main(String[] args)throws InterruptedException
 	{
 		AtomicInteger atomicInteger = new AtomicInteger(5);
-		
+
 		System.out.println(atomicInteger.compareAndSet(5, 2020) + "\t" + atomicInteger.get());
         System.out.println(atomicInteger.compareAndSet(5, 1024) + "\t" + atomicInteger.get());
 	}
@@ -1699,7 +1699,7 @@ CAS（Compare and Swap）是一种无锁算法，其主要原理是在硬件层�
 
 假设这样一种场景，当地一个线程执行CAS(V,E,U)操作。在获取到当前变量V，准备修改为新值U前，另外两个线程已经连续修改了两次变量V的值，使得该值又恢复为旧值，这样的话，我们就无法正确判断这个变量是否被修改过，如下图：
 
-![image-20231122140426425](https://m946i.zeabur.app/upload/m946i/image-20231122140426425.png)
+![image-20231122140426425](./image-20231122140426425.png)
 
 ### wait/sleep的区别
 
@@ -1719,7 +1719,7 @@ CAS（Compare and Swap）是一种无锁算法，其主要原理是在硬件层�
 
 ### 生产者消费者模式
 
-![image-20231122165850136](https://m946i.zeabur.app/upload/m946i/image-20231122165850136.png)
+![image-20231122165850136](./image-20231122165850136.png)
 
 ### synchronized锁升级
 
@@ -1738,9 +1738,9 @@ java对象于monitor之间的关系
 
 - 每个Java对象都可以关联一个Monitor对象，如果使用synchronized给对象加锁（重量级锁）之后，该**对象头的Mark Word**中就**被设置Monitor对象的指针。**
 
-![image-20231122191708005](https://m946i.zeabur.app/upload/m946i/image-20231122191708005.png)
+![image-20231122191708005](./image-20231122191708005.png)
 
-![image-20231122191752279](https://m946i.zeabur.app/upload/m946i/image-20231122191752279.png)
+![image-20231122191752279](./image-20231122191752279.png)
 
 ```java
 synchronized(obj){
@@ -1754,7 +1754,7 @@ synchronized(obj){
 - Thread-2执行完同步代码块的内容，然后唤醒EntryList中等待的线程来竞争锁，竞争是非公平的(synchronized是非公平锁）
 - WaitSet中的Thread-0,Thread-1是之前获得过锁的线程，此时的状态是WAITING状态，后面讲wait-notify时会分析
 
-![image-20231122192521675](https://m946i.zeabur.app/upload/m946i/image-20231122192521675.png)
+![image-20231122192521675](./image-20231122192521675.png)
 
 #### 锁升级
 
@@ -1820,7 +1820,7 @@ jdk中偏向锁存在延迟4秒启动，也就是说在jvm启动后4秒后创建
 ```java
 public static void main(String[] args){
 	UserTest userTest = new UserTest();
-	
+
 	synchronized(userTest){
 		System.out.println(ClassLayout.parseInstance(userTest).toPrintable);
 	}
@@ -1841,7 +1841,7 @@ public static void main(String[] args){
 ```java
 public static void main(String[] args) throws InterruptedException {
 	final UserTest userTest = new UserTest();
-    
+
     synchronized(userTest){
         System.out.println("Main = "+ClassLayout.parseInstance(userTest));
     }
@@ -1850,7 +1850,7 @@ public static void main(String[] args) throws InterruptedException {
            synchronized (userTest){
                System.out.println("Thread = "+ClassLayout.parseInstance(userTest).toPrintable);
            }
-       } 
+       }
     });
     thread.start();
     thread.join();
@@ -1948,7 +1948,7 @@ ReentrantLock刚好提供了这样功能，给我们提供了获取锁限时等�
             }
         }
     }
-    
+
     public static void main(String[] args) {
         T t1 = new T("t1");
         T t2 = new T("t2");

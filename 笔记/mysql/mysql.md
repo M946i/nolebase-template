@@ -1,61 +1,61 @@
-# ![背景](下载.png)
+# ![背景](./下载.png)
 # 连接数据库
     mysql -h ip -P port -u user -p
-    
+
     password
 ## DDL
 
     show databases; -- 显示所有数据库
-    
+
     select database(); -- 查询当前数据库
-    
+
     create database [if not exists] 数据库名 [default charset 字符集] [collate 排序规则]; -- 创建数据库
-    
+
     drop database [if exist]; -- 删除数据库
-    
+
     use 数据库名; -- 使用数据库
-    
+
     show tables; -- 查询当前数据库所有表
-    
+
     desc 表名; -- 查询表结构
-    
+
     show create table 表名; -- 查询指定表建表语句
-    
+
     create table 表名(
-    
+
         column_name column_type
-    
+
         -- id int unsigned not null comment '编号'
-    
-    ); 
+
+    );
     -- 创建表
-    
+
     alter table 表名 add 字段名 类型(长度) [comment 注释] [约束]; -- 添加字段
-    
+
     alter table 表名 modify 字段名 新数据类型(长度); -- 修改字段数据类型
-    
+
     alter table change 旧字段名 新字段名 类型(长度) [comment 注释] [约束]; -- 修改字段名及字段数据类型
-    
+
     alter table drop 字段名; -- 删除字段
-    
+
     alter table 表名 rename to 新表名; -- 修改表名
-    
+
     drop table [if exist] 表名; -- 删除表
-    
+
     truncate table 表名; -- 删除并重建表
 
 ## DML
 
     insert into 表名(字段1,字段2,....) values(值1,值2,...); -- 指定字段添加数据
-    
+
     insert into 表名 values(值1,值2,...); -- 给全部字段添加数据
-    
+
     insert into 表名(字段1,字段2,....) values(值1,值2,...),(值1,值2,...),...(值1,值2,...),(值1,值2,...); -- 批量添加指定字段数据
-    
+
     insert into 表名 values(值1,值2,...),(值1,值2,...),...(值1,值2,...),(值1,值2,...); -- 批量添加全部字段数据
-    
+
     update 表名 set 字段1=值1,字段2=值2,...[where 条件]; -- 更新字段数据类型
-    
+
     delete from 表名 [where 条件]; -- 删除数据
 
 
@@ -63,25 +63,25 @@
 
 
     select distinct 字段 from 表名 where 条件列表 group by 分组字段列表 having 分组后条件列表 order by 排序字段列表 desc/asc  limit 分页参数;//条件查询
-    
+
     select 字段1,字段2,字段3...from 表名; -- 查询多个字段
-    
-    select * from 表名;// 
-    
+
+    select * from 表名;//
+
     select 字段1 [as 别名1],字段2 [别名2],... from 表名; -- 设置别名
-    
+
     select  distinct 字段列表 from 表名; -- 查询 去重
-    
+
     select 字段列表 from 表名 where 条件列表; -- 条件 ( >  >=  <  <=  =  (<>  !=)  between...(小)and...(大)  in(...)(多选一)    like    is null  (and &&) (or ||)  (not !) )
 
-聚合函数 
-    
+聚合函数
+
     count sum min max avg
-    
+
     select count/sum/min/max/avg(字段名) from 表名 ...
 
-执行顺序    
-    
+执行顺序
+
     from-where-group by-having-select-order by-limit
 
 
@@ -89,119 +89,119 @@
 
 
     use mysql; -- 使用mysql数据库
-    
+
     select * from user; -- 查询用户
-    
+
     create user '用户名'@'主机名' identified by '密码'; -- 创建用户
-    
+
     alter user '用户名'@'主机名' identified with mysql_native_password by '新密码'; -- 更改用户密码
-    
+
     drop user '用户名'@'主机名'; -- 删除用户
 
 
     show grants for '用户名'@'主机名'; -- 查询权限
-    
+
     grant 权限名 on 数据库.表名 to '用户名'@'主机名'; -- 授权
-    
+
     revoke 权限名 on 数据库.表名 from '用户名'@'主机名'; -- 撤销权限
-    
+
     concat(S1,S2,...Sn)  -- 字符串拼接，将s1，s2，...sn拼接成一个字符
-    
+
     lower(str)  -- 小写
-    
+
     upper(str)  -- 大写
-    
+
     lpad(str,n,pad)  -- 左填充pad
-    
+
     rpad(str,n,pad)  -- 右填充pad
-    
+
     trim(str)  -- 去除头部尾部空格
-    
+
     substring(str,start,len)  -- start->start+len字符串截取
-    
+
     ceil(x) -- 向上取整
-    
+
     floor(x)  -- 向下取整
-    
+
     mod(x,y)  -- x/y的余数
-    
+
     rand() -- 返回(0,1)之间的随机数
-    
+
     round(x,y)  -- 求x四舍五入的值，保留y位小数
 
 
     curdate() -- 返回当前日期
-    
+
     curtime() -- 返回当前时间
-    
+
     now() -- 返回当前时间日期
-    
+
     year(date)  -- 获取日期中的年
-    
+
     month(date)  -- 获取日期中的月
-    
+
     day(date)   -- 获取日期中的日
-    
+
     date_add(date,interval expr type)
-    
+
     datediff(date1,date2) //返回date1到date2的天数
-    
+
     if(value,t,f)  //value为true 返回 t 否则返回 f
-    
+
     ifnull(value1,value2) //value1为不为空 返回value1 否则 返回value2
-    
+
     case when [var1] then [res1]...else [default] end  -- var1为true 返回res1 否则 返回default默认值(固定值)
-    
+
     select case when id = 1 then 1 else 2 end;
-    
+
     case [expr] when [var1] then [res1] ... else [default] end -- 非固定
-    
+
     select case id when 1 then 1 else 2 end;
 
 
 ## 约束
 
     非空约束 not null
-    
+
     唯一约束 unique
-    
+
     主键约束 primary key
-    
+
     默认约束 default [默认为1]
-    
+
     检查约束 check
-    
+
     外键约束 foreign key
 ## 多表关系
     一对多：在多的一方设置外键，关联一的一方的主键
-    
+
     多对多：建立中间表，中间表包含两个外键，关联两张表的主键
-    
+
     一对一：用于表结构拆分，在其中任何一方设置外键（UNIQUE），关联另一方的主键
 
 ##  多表查询
 
 ## 内连接 [交集部分]
 
-隐式内连接 
+隐式内连接
 
     select 字段列表 from 表1,表2 where 条件...;
 
 显示内连接
 
-    select 字段列表 from 表1 [inner] join 表2 on 条件列表...;  
+    select 字段列表 from 表1 [inner] join 表2 on 条件列表...;
     -- [inner]可省略
 
-## 外连接 
+## 外连接
 
 左外连接
 
-    select 字段名称 from 表1 left [outer] join 表2 on 条件...;  
+    select 字段名称 from 表1 left [outer] join 表2 on 条件...;
     -- [outer] 可省略
 
 右外连接
 
-    select 字段名称 from 表1 right [outer] join 表2 on 条件...;  
+    select 字段名称 from 表1 right [outer] join 表2 on 条件...;
     -- [outer] 可省略
 
 ## 自连接
@@ -212,10 +212,10 @@
 ## 联合查询
 
     select 字段名称 from 表A ...
-    
+
         union [ALL]
-    
-    select 字段名称 from 表B ...; 
+
+    select 字段名称 from 表B ...;
     -- 上下合并 查询字段的数量和类型必须相同 union ALL直接合并 union 去重
 
 ## 子查询 [嵌套查询]
@@ -224,27 +224,27 @@
     -- 子查询外部语句可以是insert/update/delete/select的任何一个。
 ### 根据子查询结果不同，分为:
     标量子查询（子查询结果为单个值）
-    
+
     列子查询（子查询结果为一列）
-    
+
     行子查询（子查询结果为一行）
-    
+
     表子查询（子查询结果为多行多列）
 
-### 标量子查询 
+### 标量子查询
     =、<>、>、>=、<、<=
 ### 列子查询
     IN -- 在指定的集合范围内，多选一
-    
+
     NOT IN -- 不在指定的集合范围之内
-    
+
     ANY -- 子查询返回列表中，有任意一个满足即可
-    
+
     SOME -- 与ANY等同，使用SOME的地方可以使用ANY
-    
+
     ALL -- 子查询返回列表的所有值都必须满足
 ### 行子查询
-    =、<>、IN、NOT IN 
+    =、<>、IN、NOT IN
 ### 表子查询
     IN
 ## 事务
@@ -255,17 +255,17 @@
 
 ### 事务操作
     select @@autocommit;
-    
+
     set @@autocommit = 0;
-    
+
     -- 查看/设置事务提交方式
-    
+
     commit;
-    
+
     -- 提交事务
-    
+
     rollback;
-    
+
     -- 回滚事务
 ### 事务四大特性
     原子性:事务是不可分割的最小操作单元，要么全部成功，要么全部失败。
@@ -278,13 +278,13 @@
     幻读:一个事务按照条件查询数据时，没有对应的数据行，但是在插入数据时，又发现这行数据已经存在，好像出现了”幻影“。
 ### 事务隔离级别
  ![事务](level.jpg)
-    
+
     -- 查看事务隔离级别
-    
+
     select @@transaction_isolation;
-    
+
     -- 设置事务隔离级别
-    
+
     set [session|global] transaction isolaction level {read uncommitted | read committed | repe}atable read | serializable}
 
 
@@ -297,13 +297,13 @@
 
     create table 表名
     (
-    
+
         字段1 字段1类型 [comment 字段1注释],
-        
+
         ......
-        
+
         字段n 字段n类型 [comment 字段n注释]
-    
+
     )engine = innodb [comment 表注释]
 
 ### 查看当前数据库支持的存储引擎
@@ -328,7 +328,7 @@
 
     xxx.ibd:xxx代表的是表名，innoDB引擎的每一张表都会对应这样一个空间文件，存储该表的表结构（frm、sdi）、数据和索引。
     参数：innodb_file_per_table
-    
+
     show variables like 'innodb_file_per_table';
 ![Logical storage structure](Logical_storage_structure.jpg)
     -- 区:1M-64页-页:16k
@@ -366,36 +366,36 @@
 
     xxx.sdi: 存储表结构信息
 
-![sd](sd.png)
+![sd](./sd.png)
 
 ## 存储引擎选择
 
 ### 在选择存储引擎时，应该根据应用系统的特点选择合适的存储引擎。对于复杂的应用系统，还可以根据实际情况选择多种存储引擎进行组合。
 
     InnoDB: 是MySQL的默认存储引擎，支持事务、外键。如果是应用对事物的完整性有比较高的要求，再并发条件下要求数据一致性，数据操作除了插入和查询之外，还包含很多的更新、删除操作，那么InnoDB存储引擎是比较合适的选择。
-    
+
     MyISAM: 如果应用是以读操作和插入操作为主，只有很少的更新和删除操作，并且事务的完整性、并发性要求不是很高，那么选择这个存储引擎是非常合适的。
-    
+
     MEMORY: 将所用数据保存再内存中，访问速度快，通常用于临时表及缓存。MEMORY的缺陷就是对表的大小有限制，太大的表无法缓存在内存中，而且无法保证数据的安全性。
 
 ## MySQL安装(linux版)
 
     密码等级
-    
+
     政策             执行的测试
-    
+
     0或者LOW         长度
-    
+
     1或者MEDIUM      长度；数字、小写/大写和特殊字符
-    
+
     2或者STRONG      长度；数字、小写/大写和特殊字符；字典文件
-       
+
     设置密码等级
-    
+
     set global validate_password.policy = 0;
-    
+
     设置密码长度
-    
+
     set global validate_password.length = 4;
 
 ## 索引
@@ -410,9 +410,9 @@
 
 ### 演示
 
-<img src="wsy.png" alt="wsy" style="zoom: 80%;" />
+<img src="./wsy.png" alt="wsy" style="zoom: 80%;" />
 
-<img src="ysy.png" alt="ysy" style="zoom: 80%;" />
+<img src="./ysy.png" alt="ysy" style="zoom: 80%;" />
 
 ##### 优缺点
 
@@ -434,11 +434,11 @@ MySQL的索引是在存储引擎层实现的，不同的存储引擎有不同的
 
 - B-Tree（**多路**平衡查找树）
 
-  以一颗最大度数（max-degree）为5（5阶）的b-tree为例（每个节点最多存储4个key，5个指针）：![](image-20231216154207872.png)[B树](https://www.cs.usfca.edu/~galles/visualization/BTree.html)
+  以一颗最大度数（max-degree）为5（5阶）的b-tree为例（每个节点最多存储4个key，5个指针）：![](./image-20231216154207872.png)[B树](https://www.cs.usfca.edu/~galles/visualization/BTree.html)
 
 - B+Tree
 
-  以一颗最大度数（max-degree）为4（4阶）的b+tree为例：![](image-20231216160422110.png)[B+树](https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html)
+  以一颗最大度数（max-degree）为4（4阶）的b+tree为例：![](./image-20231216160422110.png)[B+树](https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html)
 
   相对于B-Tree区别：
 
@@ -549,10 +549,10 @@ MySQL的索引是在存储引擎层实现的，不同的存储引擎有不同的
   ```mysql
   #查看每一条SQL的耗时基本情况
   show prifiles;
-  
+
   #查看指定query_id的SQL语句各个阶段的耗时情况
   show profile for query query_id;
-  
+
   #查看指定query_id的SQL语句CPU的使用情况
   show profile cpu for query query_id;
   ```
@@ -683,12 +683,12 @@ MySQL的索引是在存储引擎层实现的，不同的存储引擎有不同的
   using index condition : 查找使用了索引，但是需要回表查询
   using where;using index : 查找使用了索引，但是需要的数据都在索引列中能找到，所以不需要回表查询数据
   ```
-  
-  ![image-20231219152549915](image-20231219152549915.png)
-  
-  ![image-20231219152708308](image-20231219152708308.png)
-  
-  ![image-20231219152824751](image-20231219152824751.png)
+
+  ![image-20231219152549915](./image-20231219152549915.png)
+
+  ![image-20231219152708308](./image-20231219152708308.png)
+
+  ![image-20231219152824751](./image-20231219152824751.png)
 
 - 前缀索引
 
@@ -699,17 +699,17 @@ MySQL的索引是在存储引擎层实现的，不同的存储引擎有不同的
   create index idx_xxxx on table_name(column(n));
   # n为字符数
   ```
-  
+
   前缀长度
-  
+
   可以根据索引的选择性来决定，而选择性是指不重复的索引值，索引选择性越高则查询效率越高，唯一索引的选择性是1，这是最好的索引选择性，性能也是最好的。
-  
+
   ```mysql
   select count(distinct email)/count(*) from tb_user;
   select count(distinct substring(email,1,5))/count(*) from tb_user;
   ```
-  
-  ![image-20231220153518806](image-20231220153518806.png)
+
+  ![image-20231220153518806](./image-20231220153518806.png)
 
 - 单列索引与联合索引
 
@@ -933,7 +933,7 @@ MySQL的索引是在存储引擎层实现的，不同的存储引擎有不同的
 
   ```mysql
   CREATE [OR REPLACE] VIEW 视图名称[(列名列表)] AS SELECT语句 [WITH(CASCADED|LOCAL) CHECK OPTION]
-  
+
   ATER VIEW 视图名称[(列名列表)] AS SELECT语句 [WITH[CASCADED|LOCAL] CHECK OPTION]
   ```
 
@@ -953,31 +953,31 @@ MySQL的索引是在存储引擎层实现的，不同的存储引擎有不同的
   create view v1 as select id,name from student where id<=20 <with cascaded check option>;
   ```
   ​																				:arrow_up:
-  
+
   ```mysql
   create view v2 as select id,name from v1 where id>=10 with cascaded check option;
   ```
-  
+
   ​																				:arrow_up:
-  
+
   ```mysql
   create view v3 as select id,name from v2 where id<=15;
   ```
-  
+
   LOCAL：
-  
+
   ```mysql
   create view v1 as select id,name from student where id <= 15;
   ```
-  
+
   ​																				:arrow_up:
-  
+
   ```mysql
   create view v2 as select id,name from v1 where id >= 10 [with local check option];
   ```
-  
-  
-  
+
+
+
   ```mysql
   create view v3 as select id,name from v2 where id < 20
   ```
@@ -1133,7 +1133,7 @@ MySQL的索引是在存储引擎层实现的，不同的存储引擎有不同的
   END IF;
   ```
 
-  
+
 
 - 参数
 
@@ -1249,7 +1249,7 @@ MySQL的索引是在存储引擎层实现的，不同的存储引擎有不同的
 
   ```mysql
   DECLARE handler_action HANDLER FOR condition_value [,condition_value]... statement;
-  
+
   handler_action
   	CONTINUE:继续执行当前程序
   	EXIT:终止执行当前程序
@@ -1346,7 +1346,7 @@ characteristic说明:
 
 - 演示
 
-  ![image-20231222205100688](image-20231222205100688.png)
+  ![image-20231222205100688](./image-20231222205100688.png)
 
 - 特点
 
@@ -1494,7 +1494,7 @@ characteristic说明:
 
 MySQL5.5版本开始，默认使用InnoDB存储引擎，它擅长事务处理，具有崩溃恢复特性，在日常开发中使用非常广泛。下面是InnoDB架构图，左侧为内存结构，右侧为磁盘结构。
 
-![image-20231223130347131](image-20231223130347131.png)
+![image-20231223130347131](./image-20231223130347131.png)
 
 Buffer Pool：缓冲池是主内存中的一个区域，里面可以缓存磁盘上经常操作的真实数据，在执行增删改查操作时，先操作缓冲池的数据（若缓冲池没有数据，则从磁盘加载并缓存），然后再以一定频率刷新到磁盘，从而减少磁盘IO，加快处理速度。
 
@@ -1600,9 +1600,9 @@ Redo Log：重做日志，是用来实现事务的持久性。该日志文件由
 
   该日志文件由两部分组成：重做日志缓冲（redo log buffer)以及重做日志文件(redo log file），前者是在内存中，后者在磁盘中。当事务提交之后会把所有修改信息都存到该日志文件中，用于在刷新脏页到磁盘/发生错误时，进行数据恢复使用。
 
-  
 
-![image-20231223152402697](image-20231223152402697.png)
+
+![image-20231223152402697](./image-20231223152402697.png)
 
 - undo log
 
@@ -1642,7 +1642,7 @@ Redo Log：重做日志，是用来实现事务的持久性。该日志文件由
 
 - undo log版本链
 
-  ![image-20231223172028267](image-20231223172028267.png)
+  ![image-20231223172028267](./image-20231223172028267.png)
 
   不同事务或相同事务对同一条记录进行修改，会导致该记录的undolog生成一条记录版本链表，链表的头部是最新的旧记录，链表尾部是最早的旧记录。
 
@@ -1754,13 +1754,13 @@ MySQL数据库安装之后，自带了以下四个数据库，具体作用如下
   选项：
   	--count      显示数据库及表的统计信息(数据，表均不指定)
   	-i           显示指定数据库或者指定表的状态信息
-  示例：	
+  示例：
   	#查询每个数据库的表的数量及表中记录的数量
   	mysqlshow -u<用户名> -p<密码> --count
-  	
+
   	#查询test库中每个表中的字段数，及行数
   	mysqlshow -u<用户名> -p<密码> --count
-  	
+
   	#查询test库中book表的详细情况
   	mysqlshow -u<用户名> -p<密码> test book --count
   ```
@@ -1806,4 +1806,4 @@ MySQL数据库安装之后，自带了以下四个数据库，具体作用如下
   	source /root/xxxxx.sql
   ```
 
-  
+
